@@ -1,0 +1,68 @@
+<div class="section">
+  <h3 class="subtitle">
+      Login
+  </h3>
+  <div class="field">
+  <p class="control has-icons-left has-icons-right">
+    <input [(ngModel)]="email" class="input" type="email" placeholder="Email" (keyup)="validateForm('email')" [ngClass]="validateEmail">
+    <span class="icon is-small is-left">
+      <fa-icon [icon]="faEnvelope"></fa-icon>
+    </span>
+  </p>
+</div>
+<div class="field">
+  <p class="control has-icons-left">
+    <input [(ngModel)]="password" class="input" type="password" placeholder="Password" (keyup)="validateForm('password')" [ngClass]="validatePassword">
+    <span class="icon is-small is-left">
+      <fa-icon [icon]="faLock" primaryColor="red"></fa-icon>
+    </span>
+  </p>
+</div>
+<div class="field">
+  <p class="control">
+    <button class="button is-success mr-1" (click)="loginUser()" [disabled]="disableSubmit">
+      Login
+    </button>
+    <button class="button is-text ml-1" (click)="openForgot()">
+      Forgot Password?
+    </button>
+  </p>
+</div>
+</div>
+<div class="modal" [ngClass]="forgotModal">
+  <div class="modal-background" (click)="closeModal()"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Forgot Password?</p>
+      <button class="delete" aria-label="close" (click)="closeModal()"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+        Please enter your email below to reset your password.
+        <br/><br/>
+      <p class="control has-icons-left has-icons-right">
+        <input [(ngModel)]="email2" class="input" type="email" placeholder="Email" (keyup)="validateForm('email2')" [ngClass]="validateEmail2">
+        <span class="icon is-small is-left">
+          <fa-icon [icon]="faEnvelope"></fa-icon>
+        </span>
+      </p>
+    </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" (click)="submitForgotPw()" [disabled]="disableSubmit2">Submit</button>
+      <button class="button" (click)="closeModal()">Cancel</button>
+    </footer>
+  </div>
+</div>
+<div class="modal" [ngClass]="isActive">
+  <div class="modal-background" (click)="closeModal()"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">{{modalTitle}}</p>
+      <button class="delete" aria-label="close" (click)="closeModal()"></button>
+    </header>
+    <section class="modal-card-body">
+      {{modalBody}}
+    </section>
+  </div>
+</div>

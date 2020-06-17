@@ -1,0 +1,50 @@
+<nav class="navbar hero-head" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item has-text-weight-bold is-family-sans-serif" routerLink="/">
+      <span class="has-text-grey">Note</span><span class="has-text-primary">Keeper</span>
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" (click)="toggleMenu()" (clickOutside)="closeMenu()">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" [ngClass]="mobileMenuClass" class="navbar-menu">
+    <div class="navbar-start">
+      <a *ngIf="!isLoggedIn" class="navbar-item" routerLink="/home">
+        Home
+      </a>
+
+      <a *ngIf="!isLoggedIn" class="navbar-item" routerLink="/contact">
+        Contact
+      </a>
+
+      <a *ngIf="isLoggedIn" class="navbar-item" routerLink="/notebook">
+        My Notebook
+      </a>
+
+      <a *ngIf="isLoggedIn" class="navbar-item" routerLink="/changepassword">
+        Change Password
+      </a>
+
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a *ngIf="!isLoggedIn" class="button is-primary" routerLink="/signup">
+            <strong>Sign up</strong>
+          </a>
+          <a *ngIf="!isLoggedIn" class="button is-light" routerLink="/login">
+            Log in
+          </a>
+          <a *ngIf="isLoggedIn" class="button is-light" href="javascript:void(0)" (click)="logout()">
+            Log out
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

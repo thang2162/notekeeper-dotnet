@@ -1,0 +1,103 @@
+<div class="section">
+    <h3 class="subtitle">
+      My Notebook
+    </h3>
+    <button class="button is-medium is-primary is-fullwidth" (click)="newNote()">
+    <span class="icon">
+      <fa-icon [icon]="faPlusSquare"></fa-icon>
+    </span>
+    <span>New Note</span>
+  </button> <br/>
+
+  <div *ngIf="notes.length === 0" class="section">You have no saved notes!</div>
+
+  <div *ngFor="let note of notes; index as i;">
+  <div class="card">
+  <header class="card-header">
+    <p class="card-header-title">
+      {{note.title}}
+    </p>
+  </header>
+  <div class="card-content">
+    <div class="content">
+      {{note.note}}
+      <br/><br/>
+      Last Edited: <span>{{note.CreatedOn | date:'medium'}}</span>
+    </div>
+  </div>
+  <footer class="card-footer">
+    <a href="javascript:void(0)" (click)="editNote(note._id)" class="card-footer-item">Edit</a>
+    <a href="javascript:void(0)" (click)="deleteNote(note._id)" class="card-footer-item">Delete</a>
+  </footer>
+</div><br/>
+</div>
+
+</div>
+
+<div class="modal" [ngClass]="newNoteModal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">New Note</p>
+    <!--  <button class="delete" aria-label="close"></button> -->
+    </header>
+    <section class="modal-card-body">
+      <!-- Content ... -->
+      <input [(ngModel)]="newNoteTitle" class="input" type="text" placeholder="Title" (keyup)="validateNewNoteForm('title')" [ngClass]="validateNewNoteTitle"><br/><br/>
+      <textarea [(ngModel)]="newNoteNote" class="textarea" placeholder="Note" rows="8" (keyup)="validateNewNoteForm('note')" [ngClass]="validateNewNoteNote"></textarea>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" (click)="confirmNewNote()" [disabled]="disableNewNoteSubmit">Save</button>
+      <button class="button" (click)="closeModal()">Cancel</button>
+    </footer>
+  </div>
+</div>
+
+<div class="modal" [ngClass]="editNoteModal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Edit Note</p>
+    <!--  <button class="delete" aria-label="close"></button> -->
+    </header>
+    <section class="modal-card-body">
+      <!-- Content ... -->
+      <input [(ngModel)]="editNoteTitle" class="input" type="text" placeholder="Title" (keyup)="validateEditNoteForm('title')" [ngClass]="validateEditNoteTitle"><br/><br/>
+      <textarea [(ngModel)]="editNoteNote" class="textarea" placeholder="Note" rows="8" (keyup)="validateEditNoteForm('note')" [ngClass]="validateEditNoteNote"></textarea>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" (click)="confirmEditNote()" [disabled]="disableEditNoteSubmit">Save</button>
+      <button class="button" (click)="closeModal()">Cancel</button>
+    </footer>
+  </div>
+</div>
+
+<div class="modal" [ngClass]="confirmModal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Confirm Delete</p>
+    <!--  <button class="delete" aria-label="close"></button> -->
+    </header>
+    <section class="modal-card-body">
+      Are You Sure?
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-danger" (click)="confirmDeleteNote()">Delete</button>
+      <button class="button" (click)="closeModal()">Cancel</button>
+    </footer>
+  </div>
+</div>
+
+<div class="modal" [ngClass]="notifyModal">
+  <div class="modal-background" (click)="closeModal()"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">{{notifyTitle}}</p>
+      <button class="delete" aria-label="close" (click)="closeModal()"></button>
+    </header>
+    <section class="modal-card-body">
+      {{notifyBody}}
+    </section>
+  </div>
+</div>

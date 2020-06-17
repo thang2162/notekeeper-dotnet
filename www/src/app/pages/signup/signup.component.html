@@ -1,0 +1,40 @@
+<div class="section">
+  <h3 class="subtitle">
+      Sign Up
+  </h3>
+  <div class="field">
+  <p class="control has-icons-left has-icons-right">
+    <input [(ngModel)]="email" class="input" type="email" placeholder="Email" (keyup)="validateForm('email')" [ngClass]="validateEmail">
+    <span class="icon is-small is-left">
+      <fa-icon [icon]="faEnvelope"></fa-icon>
+    </span>
+  </p>
+</div>
+<div class="field">
+  <p class="control has-icons-left">
+    <input [(ngModel)]="password" class="input" type="password" placeholder="Password" (keyup)="validateForm('password')" [ngClass]="validatePassword">
+    <span class="icon is-small is-left">
+      <fa-icon [icon]="faLock" primaryColor="red"></fa-icon>
+    </span>
+  </p>
+</div>
+<div class="field">
+  <p class="control">
+    <button class="button is-primary" (click)="submitUser()" [disabled]="disableSubmit">
+      Sign Up
+    </button>
+  </p>
+</div>
+</div>
+<div class="modal" [ngClass]="isActive">
+  <div class="modal-background" (click)="closeModal()"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">{{modalTitle}}</p>
+      <button class="delete" aria-label="close" (click)="closeModal()"></button>
+    </header>
+    <section class="modal-card-body">
+      {{modalBody}}
+    </section>
+  </div>
+</div>
